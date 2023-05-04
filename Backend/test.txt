@@ -1,0 +1,73 @@
+SAMPLE USER
+
+{
+    "name": "Kunal Mehra",
+    "email": "k@gmail.com",
+    "password": "kunal143",
+    "address": {
+        "street": "Ranjhi",
+        "city": "Jabalpur",
+        "state": "MP",
+        "country": "India",
+        "zip": "482005"
+    }
+}
+-------------------------------------------------------/
+RESTAURANT
+{
+  "name": "Halwai Restaurant",
+  "address": {
+    "street": "Sadar",
+    "city": "Jabalpur",
+    "state": "MP",
+    "country": "India",
+    "zip": "482005"
+  },
+  "menu": [{
+    "name": "Tawa Roti",
+    "description": "Tasty Tawa Roti",
+    "price": 60,
+    "image": "abcd"
+  },{
+    "name": "Malai Roti",
+    "description": "Tasty Malai",
+    "price": 70,
+    "image": "abcd"
+  }]
+}
+------------------------------------------
+MENU ITEM
+{
+  "name": "Halwa",
+  "description": "Tasty Halwa",
+  "price": 70,
+  "image": "abcd"
+}
+
+{
+  "name": "Shawrma",
+  "description": "Tasty Shwarma ",
+  "price": 60,
+  "image": "abcd"
+}
+------------------------------------------
+SAMPLE ORDER
+{
+	"user" : "644cc0248a7c22b55c35caf8",
+	 "restaurant" : "644ccc8a39adcb0cf46feb41",
+   "items": [{
+     "name": "Ice Cream",
+     "price": 60,
+     "quantity": 2
+   }],
+   "totalPrice": 120,
+   "deliveryAddress": {
+     "street": "Adhartal",
+     "city": "Jabalpur",
+     "state": "MP",
+     "country": "India",
+     "zip": "482005"
+   },
+   "status": "placed"
+}
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/common.css" />
+    <script src="JS/common.js" defer></script>
+  </head>
+  <body>
+    <!--!--------------------------------------------- Header ----------------------------------------------->
+    <header></header>
+    <!--!--------------------------------------------- Main Body ----------------------------------------------->
+    <main>
+      <section id="Home">
+        <h1>Login Page</h1>
+        <a href="index.html">Home Page</a>
+        <form id="loginform">
+          <input id="name" type="text" placeholder="Enter Usename" required />
+          <input
+            id="password"
+            type="text"
+            placeholder="Enter Password"
+            required
+          />
+          <input type="submit" value="Login" />
+        </form>
+      </section>
+    </main>
+    <!--!--------------------------------------------- Footer ----------------------------------------------->
+    <footer></footer>
+  </body>
+</html>
+<script>
+  let loginform = document.getElementById("loginform");
+  loginform.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let creds = {
+      username: loginform.name.value,
+      password: loginform.password.value,
+    };
+
+    console.log(creds);
+  });
+
+  async function LoginRequest() {
+    try {
+      let res = await fetch();
+      let data = await res.json();
+      console.log(data);
+      alert("Login Successful");
+      setTimeout(() => {
+        window.location.href = "chat.html";
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+</script>
