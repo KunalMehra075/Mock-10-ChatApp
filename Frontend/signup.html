@@ -15,7 +15,7 @@
     <main>
       <section id="Home">
         <h1>Signup Page</h1>
-        <a href="index.html">Home Page</a>
+        <a href="index.html">Home</a>
 
         <form id="signupform">
           <input type="text" id="name" placeholder="Enter name" required />
@@ -36,7 +36,7 @@
   </body>
 </html>
 <script>
-  const HOST = "http://localhost:4500";
+  const HOST = "https://mock-10-chat-app.vercel.app";
   let signupform = document.getElementById("signupform");
   signupform.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -62,11 +62,13 @@
       });
       let data = await res.json();
       console.log(data);
-      if (res.ok) {
+      if (data.success == true) {
         alert(data.Message);
         setTimeout(() => {
           window.location.href = "chat.html";
         }, 1000);
+      } else {
+        alert(data.Message);
       }
     } catch (error) {
       console.log(error);

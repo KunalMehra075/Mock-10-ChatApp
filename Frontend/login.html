@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="CSS/common.css" />
-    <script src="JS/common.js" defer></script>
+    <!-- <script src="JS/common.js" defer></script> -->
   </head>
   <body>
     <!--!--------------------------------------------- Header ----------------------------------------------->
@@ -15,9 +15,9 @@
     <main>
       <section id="Home">
         <h1>Login Page</h1>
-        <a href="index.html">Home Page</a>
+        <a href="index.html">Home</a>
         <form id="loginform">
-          <input id="name" type="text" placeholder="Enter Usename" required />
+          <input id="email" type="text" placeholder="Enter Email" required />
           <input
             id="password"
             type="text"
@@ -33,26 +33,39 @@
   </body>
 </html>
 <script>
+  const HOST = "https://mock-10-chat-app.vercel.app";
   let loginform = document.getElementById("loginform");
   loginform.addEventListener("submit", (e) => {
     e.preventDefault();
     let creds = {
-      username: loginform.name.value,
+      email: loginform.email.value,
       password: loginform.password.value,
     };
 
     console.log(creds);
+    LoginRequest(creds);
   });
 
-  async function LoginRequest() {
+  async function LoginRequest(creds) {
     try {
-      let res = await fetch();
+      let res = await fetch(`${HOST}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(creds),
+      });
       let data = await res.json();
       console.log(data);
-      alert("Login Successful");
-      setTimeout(() => {
-        window.location.href = "chat.html";
-      }, 1000);
+      if (data.success == true) {
+        localStorage.setItem("chat_token", data.token);
+        alert(data.Message + " " + "Redirecting...");
+        setTimeout(() => {
+          window.location.href = "chat.html";
+        }, 1000);
+      } else {
+        alert(data.Message);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Page</title>
+    <title>Document</title>
     <link rel="stylesheet" href="CSS/common.css" />
-    <script src="JS/chat.js" defer></script>
+    <!-- <script src="JS/common.js" defer></script> -->
   </head>
   <body>
     <!--!--------------------------------------------- Header ----------------------------------------------->
@@ -14,26 +14,30 @@
     <!--!--------------------------------------------- Main Body ----------------------------------------------->
     <main>
       <section id="Home">
-        <h1>Chat Page</h1>
-        <a href="index.html">Home Page</a>
-        <div id="Chat-Box">
-          <div id="message-box"></div>
-          <form id="send_box">
-            <span>
-              <input
-                type="text"
-                id="message-input"
-                placeholder="Enter A Message"
-                required
-              />
-              <input type="submit" id="send-button" value="Send" />
-            </span>
-          </form>
-        </div>
+        <h1>Email Verified Successfully</h1>
+        <h2>Redirect you in <label id="count">5</label></h2>
+
+        <p>For the person who is checking this assignment:</p>
+        <p>
+          You see all users here
+          <a href="https://mock-10-chat-app.vercel.app/users">See all Users</a>
+          check if the email is verified or not
+        </p>
       </section>
     </main>
     <!--!--------------------------------------------- Footer ----------------------------------------------->
     <footer></footer>
   </body>
-  <script src="https://mock-10-chat-app.vercel.app/socket.io/socket.io.js"></script>
 </html>
+<script>
+  let Count = document.getElementById("count");
+  let xtos = setInterval(() => {
+    let x = +Count.innerHTML;
+    if (x == 1) {
+      clearInterval(xtos);
+      window.location.href = "index.html";
+    }
+    x--;
+    Count.innerHTML = x;
+  }, 1000);
+</script>
