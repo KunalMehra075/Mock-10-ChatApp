@@ -8,7 +8,7 @@ const socketio = require("socket.io");
 const app = express();
 app.use(express.json());
 
-app.use(cors())
+app.use(cors({ origin: "https://mock-10-chat-app-frontend.vercel.app" }))
 app.use("/users", UserRouter)
 
 
@@ -32,7 +32,7 @@ const server = app.listen(process.env.PORT, async () => {
 });
 
 
-const SocketServer = socketio(server, { cors: { origin: "*" } });
+const SocketServer = socketio(server, { cors: { origin: "https://mock-10-chat-app-frontend.vercel.app" } });
 
 SocketServer.on("connection", (socket) => {
     console.log("New Client Connected" + " : " + socket.id);
