@@ -8,7 +8,10 @@ const socketio = require("socket.io");
 const app = express();
 app.use(express.json());
 
-app.use(cors({ origin: "https://mock-10-chat-app-frontend.vercel.app" }))
+app.use(cors({
+    origin: "https://mock-10-chat-app-frontend.vercel.app",
+    allowedHeaders: ["Content-type", "Authorization"]
+}))
 app.use("/users", UserRouter)
 
 
