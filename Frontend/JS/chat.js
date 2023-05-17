@@ -1,24 +1,21 @@
-
-
 let Msgbox = document.getElementById("message-box");
 const messageForm = document.getElementById("send_box");
 let messageinput = document.getElementById("message-input");
 let messages = []
-let names = []
+let UserNames = []
 
-const name = prompt("What is your name");
-messages.push({ name: "", message: "You Joined" })
-names.push(name)
+const UserName = prompt("What is your UserName");
+messages.push({ UserName: "", message: "You Joined" })
+UserNames.push(UserName)
 ConnectToSocket()
-
-
 RenderMsgs();
 
 //? <!--------< Socket Establish>---------------------->
 
 async function ConnectToSocket() {
-    const socket = await io("https://mock-10-chat-app.vercel.app");
-    socket.emit("new-user", { name: "", message: `${name} joined the Chat` });
+    // const socket = io("https://mock-10-chat-app.vercel.app");
+    const socket = io("https://mock-10-chatapp.onrender.com");
+    socket.emit("new-user", { UserName: "", message: `${UserName} joined the Chat` });
 
     socket.on("chat-message", (data) => {
         messages.push(data);
@@ -28,16 +25,16 @@ async function ConnectToSocket() {
         messages.push(data);
         RenderMsgs()
     });
-    socket.on("user_disconnect", (name) => {
-        messages.push({ name: "", message: ` ${name} Disconnected` });
+    socket.on("user_disconnect", (UserName) => {
+        messages.push({ UserName: "", message: ` ${UserName} Disconnected` });
         RenderMsgs()
     });
     messageForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const message = messageinput.value;
-        messages.push({ name, message });
+        messages.push({ UserName, message });
         RenderMsgs()
-        let data = { name, message }
+        let data = { UserName, message }
         socket.emit("send-chat-message", data);
         messageinput.value = "";
     });
@@ -48,13 +45,13 @@ async function ConnectToSocket() {
 
 
 function RenderMsgs() {
-    console.log(names);
-    let first = names[0]
+    console.log(UserNames);
+    let first = UserNames[0]
     let data = messages.map(item => {
         return `
-         <div class="${item.name == "" ? "NoneUser" : item.name === first ? "SecondUser" : "FirstUser"}">
-        <p> ${item.name == "" ? `${item.message}` : item.name == first ? `${item.message} ` :
-                `<label style="color:blue;font-weight:500"> ${item.name}</label> : ${item.message} `} </p>
+         <div class="${item.UserName == "" ? "NoneUser" : item.UserName === first ? "SecondUser" : "FirstUser"}">
+        <p> ${item.UserName == "" ? `${item.message}` : item.UserName == first ? `${item.message} ` :
+                `<label style="color:blue;font-weight:500"> ${item.UserName}</label> : ${item.message} `} </p>
          </div>`
     })
     Msgbox.innerHTML = data.join("")

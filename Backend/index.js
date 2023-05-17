@@ -1,4 +1,3 @@
-const http = require("http")
 const UserRouter = require("./Routes/User.route");
 const connection = require("./Config/db");
 const express = require("express");
@@ -10,6 +9,7 @@ app.use(express.json());
 
 app.use(cors({
     origin: "https://mock-10-chat-app-frontend.vercel.app",
+    // origin: "http://127.0.0.1:5500",
     allowedHeaders: ["Content-type", "Authorization"]
 }))
 app.use("/users", UserRouter)
@@ -36,6 +36,10 @@ const server = app.listen(process.env.PORT, async () => {
 
 
 const SocketServer = socketio(server, { cors: { origin: "https://mock-10-chat-app-frontend.vercel.app" } });
+// const SocketServer = socketio(server, {
+// pingTimeout: 60000,
+// cors: { origin: "http://127.0.0.1:5500" }
+// });
 
 SocketServer.on("connection", (socket) => {
     console.log("New Client Connected" + " : " + socket.id);
@@ -44,7 +48,6 @@ SocketServer.on("connection", (socket) => {
     });
 
     socket.on("send-chat-message", (data) => {
-
         socket.broadcast.emit("chat-message", data);
     });
     socket.on("disconnect", () => {
