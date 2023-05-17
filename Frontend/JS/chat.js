@@ -13,7 +13,7 @@ RenderMsgs();
 //? <!--------< Socket Establish>---------------------->
 
 async function ConnectToSocket() {
-    // const socket = io("https://mock-10-chat-app.vercel.app");
+    // const socket = io("https://mock-10-chatapp.onrender.com");
     const socket = io("https://mock-10-chatapp.onrender.com");
     socket.emit("new-user", { UserName: "", message: `${UserName} joined the Chat` });
 

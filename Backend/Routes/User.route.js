@@ -5,9 +5,7 @@ const { sendMail } = require("../Config/sendmail");
 
 const UserRouter = require("express").Router();
 let frontend = "https://mock-10-chat-app-frontend.vercel.app"
-let HOST = "https://mock-10-chat-app.vercel.app"
-// let frontend = "http://127.0.0.1:5500/Frontend"
-// let HOST = "http://localhost:4500"
+let HOST = "https://mock-10-chatapp.onrender.com"
 
 // ! GET ALL USERS ROUTE
 UserRouter.get("/", async (req, res) => {
